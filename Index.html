@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神秘倒计时</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#111827;
+    color:#fff;
+    font-family:system-ui,sans-serif;
+}
+.gift{font-size:120px;margin-bottom:24px}
+.desc{font-size:24px;margin-bottom:32px;letter-spacing:2px}
+.count{
+    font-size:56px;
+    color:#ef4444;
+    font-weight:bold;
+    animation:beat 0.15s infinite alternate;
+}
+@keyframes beat{
+    from{transform:scale(1)}
+    to{transform:scale(1.06)}
+}
+</style>
+</head>
+<body>
+<div class="gift">🎁</div>
+<div class="desc">神秘倒计时</div>
+<div class="count" id="cd"></div>
+<script>
+const end = new Date("2026-11-13 00:00:00");
+function refresh(){
+    let now=new Date();
+    let d=end-now;
+    if(d<=0){
+        document.getElementById("cd").innerText="已开启！";
+        return;
+    }
+    let day=Math.floor(d/(1000*60*60*24));
+    document.getElementById("cd").innerText=`还有 ${day} 天`;
+}
+refresh();
+setInterval(refresh,1000);
+</script>
+</body>
+</html>
